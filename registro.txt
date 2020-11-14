@@ -1,0 +1,8 @@
+archivos: GKD-c_1_n500_m50.txt  
+algoritmos: er ett 
+elite: 2 3
+semilla: 1234 
+probCruce: 0.6
+probMutacion: 0.7
+tamPoblacion: 50
+numEvaluaciones: 50000
