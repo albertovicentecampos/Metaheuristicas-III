@@ -26,10 +26,14 @@ public:
     void algoritmoGeneticoGeneracional();
     void generarPoblacion();
     void evaluacion(); 
+    void evaluarIndividuo(Individuo& ind);
     void mejorElite();
     void seleccionTorneo();
     void cruce();
     void mutacion();
+    void evaluacion2();
+    void reemplazoElite();
+    void mejorIndividuo();
     
     
 private:
@@ -46,6 +50,11 @@ private:
     
     vector<Individuo> poblacion; 
     vector<Individuo> poblacionAux;
+    vector<Individuo> elite;
+    vector<int> peoresPosiciones;
+    Individuo mejorIndividuoPoblacion;
+    Individuo mejorIndividuoGlobal;
+    
     int contadorEvaluaciones; 
     int generacion; 
     string nombreOperador; 

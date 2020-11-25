@@ -86,7 +86,7 @@ void Operadores::reparacionConstruccionGreedy(vector<int>& v, int tam, int tamN,
     }
 
 
-    cout << "HA HECHO REPARACION" << endl;
+    //cout << "HA HECHO REPARACION" << endl;
 }
 
 void Operadores::cruceDosPuntos(vector<int>& padre1, vector<int>& padre2, int tam, int tamN, vector<vector<float>> distancias) {
@@ -107,7 +107,7 @@ void Operadores::cruceDosPuntos(vector<int>& padre1, vector<int>& padre2, int ta
     };
 
 
-    cout << "a: " << a << " b: " << b << endl;
+    //cout << "a: " << a << " b: " << b << endl;
 
     for (int i = 0; i < a; i++) {
         padre1generado[i] = padre1[i];
@@ -135,7 +135,7 @@ void Operadores::cruceDosPuntos(vector<int>& padre1, vector<int>& padre2, int ta
     padre2 = padre2generado;
 
 
-    cout << "fin" << endl;
+    //cout << "fin" << endl;
 }
 
 vector<int> Operadores::hijoMPX(vector<int> padre1, vector<int> padre2, int tam, int tamN, vector<vector<float>> distancias) {
@@ -208,6 +208,7 @@ vector<int> Operadores::hijoMPX(vector<int> padre1, vector<int> padre2, int tam,
 
     }
 
+    
 
     while (cont > tam) {
 
@@ -274,4 +275,25 @@ void Operadores::cruceMPX(vector<int>& padre1, vector<int>& padre2, int tam, int
     padre1 = hijo1;
     padre2 = hijo2;
 
+}
+
+
+void Operadores::mutacion(vector<int> genotipo, int j, int tamN, int tam){
+    
+    vector<bool> noSeleccionados;
+    noSeleccionados.resize(tamN, false);
+    
+    for(int i = 0; i< tam; i++){
+        noSeleccionados[genotipo[i]] = true;
+    }
+    
+    int posAleatoria = 0;
+    posAleatoria = Randint(0,tamN-1);
+    
+    while(noSeleccionados[posAleatoria] == true){
+        posAleatoria = Randint(0,tamN-1);
+    }
+    
+    genotipo[j] = posAleatoria;
+    
 }

@@ -32,6 +32,7 @@ void Log::crearArchivo(){
 
 void Log::escribirEnArchivo(string p){
         log<<p<<endl;
+        log<<endl;
 }
 
 void Log::escribirEnArchivoVector(string p){

@@ -55,8 +55,24 @@ int main(int argc, char** argv) {
             for(int k = 0; k<elite.size(); k++){
                 Faux.cargaFichero(archivos[i], distancias, n, m);                
                 Log *l = new Log(archivos[i],semilla,algoritmos[j],elite[k]);
+                l->crearArchivo();
+                l->escribirEnArchivo("ARCHIVO "+archivos[i]+" CON SEMILLA " + to_string(semilla) + "UTILIZANDO EL ALGORITMO "+algoritmos[j]+" Y UNA ELITE DE "+to_string(elite[k]));
+                l->saltoLinea();
+                
+                cout <<"Archivo "+archivos[i]+ " con semilla "+to_string(semilla)+ " Utilizando el algoritmo " + algoritmos[j] + " y una elite de "+ to_string(elite[k]) << endl;
                 GeneticoGeneracional g(n,m,distancias, elite[k], tamPoblacion, numEvaluaciones, probabilidadCruce,probabilidadMutacion,l,algoritmos[j]);
+                
+                l->escribirEnArchivo("**RESULTADOS**");
+                l->saltoLinea();
+                
+                start_timers();
                 g.algoritmoGeneticoGeneracional();
+                elapsed_time();
+                
+                l->escribirEnArchivo("Tiempo en realizar el algoritmo: "+to_string(elapsed_time())+" segundos");
+                l->cerrarArchivo();
+                
+                cout<<"Tiempo en realizar el algoritmo: "<<to_string(elapsed_time())+" segundos" << endl;
             }
         }
     }

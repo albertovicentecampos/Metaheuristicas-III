@@ -1,7 +1,7 @@
 archivos: GKD-c_1_n500_m50.txt  
-opCruce: MPX
-elite: 2
-semilla: 1234 
+opCruce: dospuntos
+elite: 3
+semilla: 26532177
 probCruce: 0.6
 probMutacion: 0.7
 tamPoblacion: 50
