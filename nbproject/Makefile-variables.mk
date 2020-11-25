@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=practica2
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/practica2
+CND_ARTIFACT_NAME_Debug=practica2metah
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/practica2metah
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=practica2.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/practica2.tar
+CND_PACKAGE_NAME_Debug=practica2metah.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/practica2metah.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=practica2
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/practica2
+CND_ARTIFACT_NAME_Release=practica2metah
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/practica2metah
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=practica2.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/practica2.tar
+CND_PACKAGE_NAME_Release=practica2metah.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/practica2metah.tar
 #
 # include compiler specific variables
 #

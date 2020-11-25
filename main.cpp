@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
             for(int k = 0; k<elite.size(); k++){
                 Faux.cargaFichero(archivos[i], distancias, n, m);                
                 Log *l = new Log(archivos[i],semilla,algoritmos[j],elite[k]);
-                GeneticoGeneracional g(n,m,distancias, elite[k], tamPoblacion, numEvaluaciones, probabilidadCruce,probabilidadMutacion,l);
+                GeneticoGeneracional g(n,m,distancias, elite[k], tamPoblacion, numEvaluaciones, probabilidadCruce,probabilidadMutacion,l,algoritmos[j]);
                 g.algoritmoGeneticoGeneracional();
             }
         }

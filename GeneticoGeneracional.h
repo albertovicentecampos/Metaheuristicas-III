@@ -16,12 +16,13 @@
 #include "Individuo.h"
 #include "Log.h"
 #include "FuncionesAux.h"
+#include "Operadores.h"
 
 using namespace std;
 
 class GeneticoGeneracional {
 public:
-    GeneticoGeneracional(int n, int m, vector<vector<float>> d,int tamEli, int tamPob, int numEval, float probCruce, float probMutacion, Log* log);
+    GeneticoGeneracional(int n, int m, vector<vector<float>> d,int tamEli, int tamPob, int numEval, float probCruce, float probMutacion, Log* log, string nomOp);
     void algoritmoGeneticoGeneracional();
     void generarPoblacion();
     void evaluacion(); 
@@ -47,6 +48,8 @@ private:
     vector<Individuo> poblacionAux;
     int contadorEvaluaciones; 
     int generacion; 
+    string nombreOperador; 
+    Operadores op; 
     
 
 };

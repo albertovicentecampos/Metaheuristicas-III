@@ -13,14 +13,20 @@
 
 #ifndef OPERADORES_H
 #define OPERADORES_H
+#include "random.h"
+#include <vector>
+#include <string>
+#include <iostream>
+
+using namespace std; 
 
 class Operadores {
 public:
-    Operadores();
-    Operadores(const Operadores& orig);
-    virtual ~Operadores();
-private:
-
+    void eliminarRepetidos(vector<int>& v,int tam);
+    void reparacionConstruccionGreedy(vector<int>& v, int tam, int tamN, vector<vector<float>> distancias);
+    void cruceDosPuntos(vector<int>& padre1, vector<int>& padre2, int tam, int tamN,vector<vector<float>> distancias);
+    vector<int> hijoMPX(vector<int> padre1, vector<int> padre2, int tam, int tamN,vector<vector<float>> distancias); 
+    void cruceMPX(vector<int>& padre1, vector<int>& padre2, int tam, int tamN,vector<vector<float>> distancias);
 };
 
 #endif /* OPERADORES_H */
