@@ -18,14 +18,6 @@ Individuo::Individuo(): evaluado(false), coste(0), generacion(0), tamGenotipo(0)
     genotipo.resize(tamGenotipo, 0);
 }
 
-//void Individuo::SetGenotipo(vector<int> genotipo) {
-//    this->genotipo = genotipo;
-//}
-//
-//vector<int> Individuo::GetGenotipo() const {
-//    return genotipo;
-//}
-
 void Individuo::SetMutadoAlterado(bool mutadoAlterado) {
     this->mutadoAlterado = mutadoAlterado;
 }

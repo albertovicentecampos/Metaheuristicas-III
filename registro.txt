@@ -1,8 +1,8 @@
-archivos: GKD-c_1_n500_m50.txt  
-opCruce: dospuntos
-elite: 3
+archivos: GKD-c_1_n500_m50.txt GKD-c_2_n500_m50.txt GKD-c_3_n500_m50.txt MDG-a_21_n2000_m200.txt MDG-a_22_n2000_m200.txt MDG-a_23_n2000_m200.txt SOM-b_11_n300_m90.txt SOM-b_12_n300_m120.txt SOM-b_13_n400_m40.txt
+opCruce: dospuntos MPX
+elite: 2 3
 semilla: 26532177
-probCruce: 0.6
-probMutacion: 0.7
+probCruce: 0.7
+probMutacion: 0.05
 tamPoblacion: 50
 numEvaluaciones: 50000

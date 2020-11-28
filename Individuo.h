@@ -20,8 +20,6 @@ using namespace std;
 class Individuo {
 public:
     Individuo();
-//    void SetGenotipo(vector<int> genotipo);
-//    vector<int> GetGenotipo() const;
     void SetMutadoAlterado(bool mutadoAlterado);
     bool IsMutadoAlterado() const;
     void SetGeneracion(int generacion);
@@ -40,8 +38,7 @@ private:
     int generacion; 
     int tamGenotipo;
     bool mutadoAlterado;
-    
-    
+ 
 };
 
 #endif /* INDIVIDUO_H */
