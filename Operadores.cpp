@@ -278,7 +278,7 @@ void Operadores::cruceMPX(vector<int>& padre1, vector<int>& padre2, int tam, int
 }
 
 
-void Operadores::mutacion(vector<int> genotipo, int j, int tamN, int tam){
+void Operadores::mutacion(vector<int>& genotipo, int j, int tamN, int tam){
     
     vector<bool> noSeleccionados;
     noSeleccionados.resize(tamN, false);

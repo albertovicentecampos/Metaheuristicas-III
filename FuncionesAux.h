@@ -38,7 +38,7 @@ public:
 class FuncionesAux {
 public:
     void cargaFichero(string nombre, vector<vector<float>> &matriz, int& n, int& m);
-    void cargaParametrizacion(string nombreArchivo, vector<string>& archivos, vector<string>& nombreAlg, vector<int>& elite, int& semilla, float& probCruce, float& probMutacion, int& tamPoblacion, int& nEvaluaciones);
+    void cargaParametrizacion(string nombreArchivo, vector<string>& archivos, vector<string>& nombreAlg, vector<int>& elite, vector<int>& semillas, float& probCruce, float& probMutacion, int& tamPoblacion, int& nEvaluaciones);
     void solucionAleatoria(vector<int>& sol, vector<bool>& noSeleccionados, int tamM, int tamN);
     void GenotipoAleatorio(vector<int>& sol,int tamM, int tamN);
     float coste(vector<vector<float>> matrizDistancias, int m, vector<int> seleccionados);

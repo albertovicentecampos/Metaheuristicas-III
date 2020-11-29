@@ -35,7 +35,7 @@ tamN(n), tamM(m), distancias(d), tamElite(tamEli), tamPoblacion(tamPob), numEval
     mejorIndividuoGlobal = Individuo();
 }
 
-void GeneticoGeneracional::algoritmoGeneticoGeneracional() {
+Individuo GeneticoGeneracional::algoritmoGeneticoGeneracional() {
     generarPoblacion();
     evaluacion();
     l->escribirEnArchivo("");
@@ -43,14 +43,16 @@ void GeneticoGeneracional::algoritmoGeneticoGeneracional() {
     l->escribirEnArchivo("POBLACION INICIAL GENERADA");
     for (int i = 0; i < tamPoblacion; i++) {
         l->escribirEnArchivo("=================");
-        l->escribirEnArchivo("Individuo" + to_string(i));
+        l->escribirEnArchivo("Individuo " + to_string(i));
         l->escribirEnArchivo("-Coste: " + to_string(poblacion[i].GetCoste()));
         l->escribirEnArchivoVector("-Genotipo: ");
         for (int j = 0; j < tamM; j++) {
             l->escribirEnArchivoVector(to_string(poblacion[i].genotipo[j]) + ' ');
         }
+        l->saltoLinea();
     }
 
+    l->saltoLinea();
     l->escribirEnArchivo("=================");
     l->saltoLinea();
 
@@ -89,6 +91,7 @@ void GeneticoGeneracional::algoritmoGeneticoGeneracional() {
 
     l->escribirEnArchivo("El numero total de generaciones: " + to_string(generacion) + " con un total de " + to_string(contadorEvaluaciones) + " evaluaciones");
 
+    return mejorIndividuoGlobal;
 }
 
 void GeneticoGeneracional::generarPoblacion() {
@@ -120,14 +123,16 @@ void GeneticoGeneracional::mejorElite() {
         ordenados.insert(p);
     }
 
-    set<pair<float, int>>::iterator it = ordenados.begin();
+    set<pair<float, int>>::iterator it = ordenados.end();
     l->escribirEnArchivo("MEJORES " + to_string(tamElite) + " INDIVIDUOS");
     for (int i = 0; i < tamElite; i++) {
+        --it;
+        elite[i] = poblacion[it->second];
+
         l->escribirEnArchivo("---------------------------------");
         l->escribirEnArchivo("Individuo " + to_string(it->second));
         l->escribirEnArchivo("-Coste: " + to_string(poblacion[it->second].GetCoste()));
-        elite[i] = poblacion[it->second];
-        it++;
+
     }
 
     l->escribirEnArchivo("---------------------------------");
@@ -187,7 +192,7 @@ void GeneticoGeneracional::cruce() {
                 }
                 l->saltoLinea();
 
-            } else if (generacion % 10 == 0) {
+            } else if (generacion % 100 == 0) {
 
                 l->saltoLinea();
                 l->escribirEnArchivo("Generacion: " + to_string(generacion));
@@ -222,25 +227,25 @@ void GeneticoGeneracional::cruce() {
 
             if (generacion < 30) {
                 l->saltoLinea();
-                l->escribirEnArchivoVector("Hijo 1 cruzado: ");
+                l->escribirEnArchivoVector("Hijo 1 cruzado:               ");
                 for (int j = 0; j < tamM; j++) {
                     l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[j]) + " ");
                 }
                 l->saltoLinea();
-                l->escribirEnArchivoVector("Hijo 2 cruzado: ");
+                l->escribirEnArchivoVector("Hijo 2 cruzado:               ");
                 for (int j = 0; j < tamM; j++) {
                     l->escribirEnArchivoVector(to_string(poblacionAux[i + 1].genotipo[j]) + " ");
                 }
                 l->saltoLinea();
 
-            } else if (generacion % 10 == 0) {
+            } else if (generacion % 100 == 0) {
                 l->saltoLinea();
-                l->escribirEnArchivoVector("Hijo 1 cruzado: ");
+                l->escribirEnArchivoVector("Hijo 1 cruzado:               ");
                 for (int j = 0; j < tamM; j++) {
                     l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[j]) + " ");
                 }
                 l->saltoLinea();
-                l->escribirEnArchivoVector("Hijo 2 cruzado: ");
+                l->escribirEnArchivoVector("Hijo 2 cruzado:               ");
                 for (int j = 0; j < tamM; j++) {
                     l->escribirEnArchivoVector(to_string(poblacionAux[i + 1].genotipo[j]) + " ");
                 }
@@ -253,71 +258,102 @@ void GeneticoGeneracional::cruce() {
 }
 
 void GeneticoGeneracional::mutacion() {
+    l->saltoLinea();
     l->escribirEnArchivo("MUTACION");
     for (int i = 0; i < tamPoblacion; i++) {
 
+        bool cambiaIndividuo = false;
+        int ind = 0;
+        vector<int> genotipoAnterior;
+        genotipoAnterior.resize(tamM);
+        
+//        if (generacion < 30) {
+//            l->saltoLinea();
+//            l->escribirEnArchivo("Generacion: " + to_string(generacion));
+//            l->escribirEnArchivo("Mutando el individuo numero " + to_string(i));
+//            l->escribirEnArchivoVector("Genotipo antes de ser mutado: ");
+//
+//            for (int z = 0; z < tamM; z++) {
+//                l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
+//            }
+//
+//        } else if (generacion % 100 == 0) {
+//            l->saltoLinea();
+//            l->escribirEnArchivo("Generacion: " + to_string(generacion));
+//            l->escribirEnArchivo("Mutando el individuo numero " + to_string(i));
+//            l->escribirEnArchivoVector("Genotipo antes de ser mutado: ");
+//
+//            for (int z = 0; z < tamM; z++) {
+//                l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
+//            }
+//        }
 
         for (int j = 0; j < tamM; j++) {
             float x = Randfloat(0, 1);
             if (x < probMut) {
 
-                if (generacion < 30) {
-                    l->escribirEnArchivo("Generacion: " + to_string(generacion));
-                    l->escribirEnArchivo("Mutando el individuo numero " + to_string(i));
-                    l->escribirEnArchivoVector("Genotipo antes de ser mutado: ");
+                cambiaIndividuo = true;
+                ind = i;
 
-                    for (int z = 0; z < tamM; z++) {
-                        l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
-                    }
-
-                } else if (generacion % 10 == 0) {
-                    l->escribirEnArchivo("Generacion: " + to_string(generacion));
-                    l->escribirEnArchivo("Mutando el individuo numero " + to_string(i));
-                    l->escribirEnArchivoVector("Genotipo antes de ser mutado: ");
-
-                    for (int z = 0; z < tamM; z++) {
-                        l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
-                    }
-                }
-
+                genotipoAnterior = poblacionAux[i].genotipo;
 
                 op.mutacion(poblacionAux[i].genotipo, j, tamN, tamM);
                 poblacionAux[i].SetMutadoAlterado(true);
 
-                if (generacion < 30) {
-                    l->saltoLinea();
-                    l->escribirEnArchivoVector("Genotipo mutado: ");
-                    for (int z = 0; z < tamM; z++) {
-                        l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
-                    }
-
-                } else if (generacion % 10 == 0) {
-                    l->saltoLinea();
-                    l->escribirEnArchivoVector("Genotipo mutado: ");
-                    for (int z = 0; z < tamM; z++) {
-                        l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
-                    }
-                }
-
             }
         }
+
+
+        if (cambiaIndividuo) {
+
+            l->saltoLinea();
+            l->escribirEnArchivo("-----------------------------------------------");
+            l->escribirEnArchivo("Generacion: " + to_string(generacion));
+            l->escribirEnArchivo("Mutando el individuo numero " + to_string(ind));
+            l->escribirEnArchivoVector("Genotipo antes de ser mutado: ");
+
+            for (int z = 0; z < tamM; z++) {
+                l->escribirEnArchivoVector(to_string(genotipoAnterior[z]) + " ");
+            }
+
+
+            l->saltoLinea();
+            l->escribirEnArchivoVector("Genotipo mutado             : ");
+            for (int z = 0; z < tamM; z++) {
+                l->escribirEnArchivoVector(to_string(poblacionAux[ind].genotipo[z]) + " ");
+            }
+            l->saltoLinea();
+            l->escribirEnArchivo("-----------------------------------------------");
+            l->saltoLinea();
+        }
+
+        //        else if (generacion % 100 == 0) {
+        //            l->saltoLinea();
+        //            l->escribirEnArchivoVector("Genotipo mutado: ");
+        //            for (int z = 0; z < tamM; z++) {
+        //                l->escribirEnArchivoVector(to_string(poblacionAux[i].genotipo[z]) + " ");
+        //            }
+        //        }
 
     }
 
 }
 
 void GeneticoGeneracional::evaluacion2() {
+    l->escribirEnArchivo("==================");
     l->escribirEnArchivo("SEGUNDA EVALUACION");
     for (int i = 0; i < tamPoblacion; i++) {
         if (poblacionAux[i].IsMutadoAlterado()) {
             evaluarIndividuo(poblacionAux[i]);
             contadorEvaluaciones++;
             poblacionAux[i].SetGeneracion(generacion);
+            l->escribirEnArchivo("-------------------------");
             l->escribirEnArchivo("Individuo " + to_string(i));
             l->escribirEnArchivo("-Coste: " + to_string(poblacionAux[i].GetCoste()));
             l->escribirEnArchivo("-Generacion: " + to_string(poblacionAux[i].GetGeneracion()));
         }
     }
+    l->escribirEnArchivo("==================");
 }
 
 void GeneticoGeneracional::reemplazoElite() {
@@ -327,11 +363,11 @@ void GeneticoGeneracional::reemplazoElite() {
         pair<float, int> p(poblacionAux[i].GetCoste(), i);
         orden.insert(p);
     }
-    set<pair<float, int>>::iterator it = orden.end();
+    set<pair<float, int>>::iterator it = orden.begin();
     for (int i = 0; i < tamElite; i++) {
-        --it;
         l->escribirEnArchivo("Reemplazo el individuo " + to_string(it->second) + " que tiene un coste de " + to_string(poblacionAux[it->second].GetCoste()) + " por el de la elite que tiene un coste de " + to_string(elite[i].GetCoste()));
         poblacionAux[it->second] = elite[i];
+        it++;
     }
 }
 

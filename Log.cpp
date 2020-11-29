@@ -26,7 +26,7 @@ Log::~Log() {
 }
 
 void Log::crearArchivo(){
-    log_file.assign(nArchivo+"-"+nAlg+"-"+to_string(elite)+".txt");
+    log_file.assign(nArchivo+"-"+nAlg+"-"+to_string(elite)+"-"+to_string(semilla)+".txt");
     log.open(log_file.c_str()); 
 }
 

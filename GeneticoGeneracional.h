@@ -23,7 +23,7 @@ using namespace std;
 class GeneticoGeneracional {
 public:
     GeneticoGeneracional(int n, int m, vector<vector<float>> d,int tamEli, int tamPob, int numEval, float probCruce, float probMutacion, Log* log, string nomOp);
-    void algoritmoGeneticoGeneracional();
+    Individuo algoritmoGeneticoGeneracional();
     void generarPoblacion();
     void evaluacion(); 
     void evaluarIndividuo(Individuo& ind);

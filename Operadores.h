@@ -27,7 +27,7 @@ public:
     void cruceDosPuntos(vector<int>& padre1, vector<int>& padre2, int tam, int tamN,vector<vector<float>> distancias);
     vector<int> hijoMPX(vector<int> padre1, vector<int> padre2, int tam, int tamN,vector<vector<float>> distancias); 
     void cruceMPX(vector<int>& padre1, vector<int>& padre2, int tam, int tamN,vector<vector<float>> distancias);
-    void mutacion(vector<int> genotipo, int j, int tamN, int tam);
+    void mutacion(vector<int>& genotipo, int j, int tamN, int tam);
     
     
 };

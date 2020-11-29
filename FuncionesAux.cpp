@@ -43,7 +43,7 @@ void FuncionesAux::cargaFichero(string nombre, vector<vector<float>> &matriz, in
     fe.close();
 }
 
-void FuncionesAux::cargaParametrizacion(string nombreArchivo, vector<string>& archivos, vector<string>& nombreAlg, vector<int>& elite, int& semilla, float& probCruce, float& probMutacion, int& tamPoblacion, int& nEvaluaciones) {
+void FuncionesAux::cargaParametrizacion(string nombreArchivo, vector<string>& archivos, vector<string>& nombreAlg, vector<int>& elite, vector<int>& semillas, float& probCruce, float& probMutacion, int& tamPoblacion, int& nEvaluaciones) {
 
     ifstream archivo_entrada;
     string linea;
@@ -101,14 +101,14 @@ void FuncionesAux::cargaParametrizacion(string nombreArchivo, vector<string>& ar
 
 
     //SEMILLA
-    vector<string> semi;
+    //vector<string> semi;
     istringstream isstream4(sem);
     string palabra4;
     while (isstream4 >> palabra4) {
-        semi.push_back(palabra4);
+        semillas.push_back(atoi(palabra4.c_str()));
     }
-    semi.erase(semi.begin());
-    semilla = stof(semi[0].c_str());
+    semillas.erase(semillas.begin());
+    //semilla = stof(semi[0].c_str());
 
 
     //PROBABILIDAD CRUCE
